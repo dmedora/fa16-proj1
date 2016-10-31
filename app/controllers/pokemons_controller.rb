@@ -46,8 +46,9 @@ class PokemonsController < ApplicationController
 		# DO I NEED TO SAVE??? 
 		# redirect_to :back
 
-		if !@newthing.save!
-			flash[:error] = @pokemon.errors.full_messages.to_sentence
+		if !@newthing.save #@newthing.valid?
+			flash[:error] = @newthing.errors.full_messages.to_sentence
+			redirect_to newpokemon_path
 		else
 			redirect_to trainer_path(:id => current_trainer.id)
 		end

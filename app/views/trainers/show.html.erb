@@ -20,8 +20,6 @@
 			<% if (pokemon.health > 0) %>
 			<li><%= pokemon.name %>, Level: <%= pokemon.level %>, Health: <%= pokemon.health %> 
 			<%= button_to "Damage!", damage_path(id: pokemon), :class => "button medium", :method => :patch %>
-
-			<%= button_to "Heal!", heal_path(id: pokemon), :class => "button medium", :method => :patch %>
 			</li>
 			<% end %>
 		<% end %>
@@ -30,12 +28,9 @@
 
 
 
-
 <% if (@trainer.name == current_trainer.name) %>
 	<p>Create a new Pokemon:</p>
 	<%= button_to "Create!", newpokemon_path(id: @pokemon), :class => "button medium", :method => :get %>
 <% end %>  
-
-
 
 
