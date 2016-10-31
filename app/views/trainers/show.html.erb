@@ -4,11 +4,12 @@
 
 
 <!-- have to access the pokemon from pokemon right.. find all with trainer id = @trainer.id -->
-<p>ID: <%= @trainer.id if @trainer.id %></p>
+<p>ID no.: <%= @trainer.id if @trainer.id %></p>
 
 <p>Pokemon:</p>
+<ul style="margin-top:-20px;">
 <ul>
-	<%= @trainer.pokemons.each do |pokemon| %>
+	<% @trainer.pokemons.each do |pokemon| %> 
 	<li><%= pokemon.name %>, Level: <%= pokemon.level %></li>
   	<% end %>
 </ul>

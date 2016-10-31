@@ -13,7 +13,7 @@ https://piazza.com/class/is2hozuzije420?cid=125
 
 
 # Question 3: What would you name your own Pokemon?
-whatisgoingonmon
+whatisgoingonlolmon
 
 # Question 4: What did you pass into the redirect_to? If it is a path, what did that path need? If it is not a path, why is it okay not to have a path here?
 
