@@ -4,27 +4,50 @@ class PokemonsController < ApplicationController
 		@pokemon = Pokemon.find(params[:id]) # this gets me the correct pokemon I think
 		# @pokemon.instance_variable_set @trainer, current_trainer
 		@pokemon.trainer_id = current_trainer.id
-		# this line above is what's not working. if i put an integer in it works fine. 
-		# now changed current_trainer to @current_trainer. HAVE NOT TESTED THIS!!! 
-		# okay works now... turns out needed to just the .id part... lol fml. 
-
-
-		# puts @pokemon.trainer_id
-		@pokemon.save! #????? is this how i save???? 
+		@pokemon.save! # save! will return error if unsuccessful, .save returns true or false. 
 		
-		# how do i check this in the console...... :/ 
-
-
-#####
-		# @id = params[:id]
-		# @pokemon = Pokemon.create(params[:name], params[:level], current_trainer)
-		# @pokemon.save!
-
-
-######
 		redirect_to :root
-
-		# am i supposed to make a new pokemon entry????? is that it????? can't i just link that pokemon to a specific trainer????? 
 	end
+
+
+	def damage
+		@pokemon = Pokemon.find(params[:id])
+		@pokemon.health = @pokemon.health - 10
+		@pokemon.save!
+
+		if @pokemon.health <= 0
+			@pokemon.destroy
+			@pokemon.save!
+		end
+
+		# redirect_to :back
+		redirect_to trainer_path(:id => current_trainer.id)
+	end
+
+
+	# part 5: 
+	# def show
+	# 	# @pokemon = Pokemon.find(params[:id]) # what am i actually showing lol do i need this
+	# end
+
+	def new # what does this do?? as seen in lecture 3. just because the html is called new? 
+		@pokemon = Pokemon.new
+	end
+
+	def create
+		@newthing = Pokemon.create(:name => params[:pokemon][:name], 
+			:level => 1, 
+			:health => 100, 
+			:trainer_id => current_trainer.id)
+		# DO I NEED TO SAVE??? 
+		# redirect_to :back
+
+		if !@newthing.save!
+			flash[:error] = @pokemon.errors.full_messages.to_sentence
+		else
+			redirect_to trainer_path(:id => current_trainer.id)
+		end
+	end
+
 
 end

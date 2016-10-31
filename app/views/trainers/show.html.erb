@@ -3,16 +3,22 @@
 <p>Email: <%= @trainer.email if @trainer.email %></p>
 
 
-<!-- have to access the pokemon from pokemon right.. find all with trainer id = @trainer.id -->
-<p>ID no.: <%= @trainer.id if @trainer.id %></p>
-
 <p>Pokemon:</p>
 <ul style="margin-top:-20px;">
 <ul>
 	<% @trainer.pokemons.each do |pokemon| %> 
-	<li><%= pokemon.name %>, Level: <%= pokemon.level %></li>
+	<li><%= pokemon.name %>, Level: <%= pokemon.level %>, Health: <%= pokemon.health %> 
+	<%= button_to "Damage!", damage_path(id: pokemon), :class => "button medium", :method => :patch %>
+	</li>
+	<!-- should i be changing @pokemon to .. something else? if i do pokemon.id correct id shows up in browser url  -->
   	<% end %>
 </ul>
 
 
-<!-- WHY DOES MY TRAINER NAME SHOW UP AS TRAINER/5 BUT THE OTHERS DON'T? Also, after clicking on that, it shows the name field as blank... Not being saved from Devise's sign up form??  -->
+
+
+<% if (@trainer.name == current_trainer.name) %>
+	<p>Create a new Pokemon:</p>
+	<%= button_to "Create!", newpokemon_path(id: @pokemon), :class => "button medium", :method => :get %>
+<% end %>  
+
