@@ -26,4 +26,5 @@ end
 group :production do
   gem 'pg'
   gem 'thin'
+  gem 'rails_12factor' # DM added for Heroku
 end
