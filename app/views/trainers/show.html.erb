@@ -6,11 +6,25 @@
 <p>Pokemon:</p>
 <ul style="margin-top:-20px;">
 <ul>
-	<% @trainer.pokemons.each do |pokemon| %> 
-	<li><%= pokemon.name %>, Level: <%= pokemon.level %>, Health: <%= pokemon.health %> 
-	<%= button_to "Damage!", damage_path(id: pokemon), :class => "button medium", :method => :patch %>
-	</li>
-	<!-- should i be changing @pokemon to .. something else? if i do pokemon.id correct id shows up in browser url  -->
+	
+	<% if (@trainer.name == current_trainer.name) %>
+		<% @trainer.pokemons.each do |pokemon| %> 
+			<li><%= pokemon.name %>, Level: <%= pokemon.level %>, Health: <%= pokemon.health %> 
+			<%= button_to "Damage!", damage_path(id: pokemon), :class => "button medium", :method => :patch %>
+
+			<%= button_to "Heal!", heal_path(id: pokemon), :class => "button medium", :method => :patch %>
+			</li>
+		<% end %>
+	<% else %>
+		<% @trainer.pokemons.each do |pokemon| %>
+			<% if (pokemon.health > 0) %>
+			<li><%= pokemon.name %>, Level: <%= pokemon.level %>, Health: <%= pokemon.health %> 
+			<%= button_to "Damage!", damage_path(id: pokemon), :class => "button medium", :method => :patch %>
+
+			<%= button_to "Heal!", heal_path(id: pokemon), :class => "button medium", :method => :patch %>
+			</li>
+			<% end %>
+		<% end %>
   	<% end %>
 </ul>
 
@@ -21,4 +35,7 @@
 	<p>Create a new Pokemon:</p>
 	<%= button_to "Create!", newpokemon_path(id: @pokemon), :class => "button medium", :method => :get %>
 <% end %>  
+
+
+
 

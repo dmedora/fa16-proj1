@@ -23,4 +23,7 @@ Rails.application.routes.draw do
 
   post 'createpokemon' => 'pokemons#create', as: 'createpokemon'
 
+  # EC
+  patch 'heal' => 'pokemons#heal', as: 'heal'
+
 end

@@ -16,16 +16,17 @@ whatisgoingonlolmon
 
 # Question 4: What did you pass into the redirect_to? If it is a path, what did that path need? If it is not a path, why is it okay not to have a path here?
 I passed in :back, which routes the page to the page that the request originally came from. 
-Update: I passed in trainer_path, after figuring out how rake routes works.. This needed the current trainer's id as an argument, to know which trainer's profile to display. 
+Update: I passed in trainer_path, after figuring out how rake routes works.. This needed the trainer id of the pokemon the user is damaging as an argument, to know which trainer's profile to display. 
 
 # Question 5: Explain how putting this line "flash[:error] = @pokemon.errors.full_messages.to_sentence" shows error messages on your form.
-???
+It refers to the application.html.erb file, which renders 'layouts/messages' at the end, which has a partial _messages.html.erb. This takes the error message, and runs. to_sentence on it, presenting it in a human readable form. 
 
 # Give us feedback on the project and decal below!
 I feel like I do not get enough practise with what was done in lecture in the homeworks, and that soemtimes I don't really know why I'm doing certain things. Project was interesting and fun. 
 
 # Extra credit: Link your Heroku deployed app
-Do this DARYUS:
-http://docs.railsbridge.org/intro-to-rails/deploying_to_heroku
-https://signup.heroku.com/ruby?c=70130000000NZToAAO&gclid=CjwKEAjwtNbABRCsqO7J0_uJxWYSJAAiVo5LJ7Xt3WUbg1EEr05VR6UuAf9CvYpEw6BAzm73KDmHgBoCHATw_wcB
+https://rails-pokeproj.herokuapp.com/
+
+
+************Remaining questions - should error message be in the form page?? but the spec says in the model... 
 
